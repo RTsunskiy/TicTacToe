@@ -3,6 +3,7 @@ package com.example.tictactoe;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.animation.ObjectAnimator;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -28,13 +30,22 @@ public class MainActivity extends AppCompatActivity {
     private ImageButton button21;
     private ImageButton button22;
 
+    private TextView circleTextView;
+    private TextView crossTextView;
+
     private boolean index;
+
+    private  TicTacToeField ticTacToeField;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ticTacToeField = new TicTacToeField();
+
+        initResultTextView();
 
         index = true;
 
@@ -46,6 +57,25 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void initResultTextView() {
+        circleTextView = findViewById(R.id.circle_result_tv);
+        crossTextView = findViewById(R.id.cross_result_tv);
+    }
+    private void resetImage(boolean isWinFlag) {
+        if (isWinFlag) {
+            button00.setBackgroundColor(Color.WHITE);
+            button01.setBackgroundColor(Color.WHITE);
+            button02.setBackgroundColor(Color.WHITE);
+            button10.setBackgroundColor(Color.WHITE);
+            button11.setBackgroundColor(Color.WHITE);
+            button12.setBackgroundColor(Color.WHITE);
+            button20.setBackgroundColor(Color.WHITE);
+            button21.setBackgroundColor(Color.WHITE);
+            button22.setBackgroundColor(Color.WHITE);
+            ticTacToeField.resetWinnerMatrix();
+            ticTacToeField.setWinFlag(false);
+        }
+    }
     private void buttonListeners() {
         button00.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,15 +84,32 @@ public class MainActivity extends AppCompatActivity {
                     button00.setBackground(getResources().getDrawable(R.drawable.ic_cross_foreground));
                     tweenAnimation(button00);
                     index = false;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CROSS, 0, 0);
+
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
                else if (!index) {
                     button00.setBackground(getResources().getDrawable(R.drawable.ic_circle_foreground));
                     index = true;
                     tweenAnimation(button00);
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CIRCLE, 0, 0);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
             }
+
+
         });
 
         button01.setOnClickListener(new View.OnClickListener() {
@@ -72,12 +119,26 @@ public class MainActivity extends AppCompatActivity {
                     button01.setBackground(getResources().getDrawable(R.drawable.ic_cross_foreground));
                     index = false;
                     tweenAnimation(button01);
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CROSS, 0, 1);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
                else if (!index) {
                     button01.setBackground(getResources().getDrawable(R.drawable.ic_circle_foreground));
                     index = true;
                     tweenAnimation(button01);
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CIRCLE, 0, 1);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
             }
@@ -90,12 +151,26 @@ public class MainActivity extends AppCompatActivity {
                     button02.setBackground(getResources().getDrawable(R.drawable.ic_cross_foreground));
                     index = false;
                     tweenAnimation(button02);
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CROSS, 0, 2);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
                else if (!index) {
                     button02.setBackground(getResources().getDrawable(R.drawable.ic_circle_foreground));
                     index = true;
                     tweenAnimation(button02);
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CIRCLE, 0, 2);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
             }
@@ -108,12 +183,26 @@ public class MainActivity extends AppCompatActivity {
                     button10.setBackground(getResources().getDrawable(R.drawable.ic_cross_foreground));
                     index = false;
                     tweenAnimation(button10);
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CROSS, 1, 0);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
                else if (!index) {
                     button10.setBackground(getResources().getDrawable(R.drawable.ic_circle_foreground));
                     index = true;
                     tweenAnimation(button10);
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CIRCLE, 1, 0);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
             }
@@ -126,12 +215,26 @@ public class MainActivity extends AppCompatActivity {
                     button11.setBackground(getResources().getDrawable(R.drawable.ic_cross_foreground));
                     tweenAnimation(button11);
                     index = false;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CROSS, 1, 1);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
                else if (!index) {
                     button11.setBackground(getResources().getDrawable(R.drawable.ic_circle_foreground));
                     tweenAnimation(button11);
                     index = true;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CIRCLE, 1, 1);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
             }
@@ -144,12 +247,26 @@ public class MainActivity extends AppCompatActivity {
                     button12.setBackground(getResources().getDrawable(R.drawable.ic_cross_foreground));
                     tweenAnimation(button12);
                     index = false;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CROSS, 1, 2);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
                else if (!index) {
                     button12.setBackground(getResources().getDrawable(R.drawable.ic_circle_foreground));
                     tweenAnimation(button12);
                     index = true;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CIRCLE, 1, 2);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
             }
@@ -162,12 +279,26 @@ public class MainActivity extends AppCompatActivity {
                     button20.setBackground(getResources().getDrawable(R.drawable.ic_cross_foreground));
                     tweenAnimation(button20);
                     index = false;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CROSS, 2, 0);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
                else if (!index) {
                     button20.setBackground(getResources().getDrawable(R.drawable.ic_circle_foreground));
                     tweenAnimation(button20);
                     index = true;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CIRCLE, 2, 0);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
             }
@@ -180,12 +311,26 @@ public class MainActivity extends AppCompatActivity {
                     button21.setBackground(getResources().getDrawable(R.drawable.ic_cross_foreground));
                     tweenAnimation(button21);
                     index = false;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CROSS, 2, 1);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
                else if (!index) {
                     button21.setBackground(getResources().getDrawable(R.drawable.ic_circle_foreground));
                     tweenAnimation(button21);
                     index = true;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CIRCLE, 2, 1);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
             }
@@ -198,12 +343,26 @@ public class MainActivity extends AppCompatActivity {
                     button22.setBackground(getResources().getDrawable(R.drawable.ic_cross_foreground));
                     tweenAnimation(button22);
                     index = false;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CROSS, 2, 2);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
                else if (!index) {
                     button22.setBackground(getResources().getDrawable(R.drawable.ic_circle_foreground));
                     tweenAnimation(button22);
                     index = true;
+
+                    ticTacToeField.setFigureInMatrix(TicTacToeField.Figure.CIRCLE, 2, 2);
+
+                    circleTextView.setText(String.valueOf(ticTacToeField.getCircleCountWin()));
+                    crossTextView.setText(String.valueOf(ticTacToeField.getCrossCountWin()));
+
+                    resetImage(ticTacToeField.isWinFlag());
                     return;
                 }
             }
@@ -256,9 +415,5 @@ public class MainActivity extends AppCompatActivity {
         else if (button.equals(button22)) {
             button22.startAnimation(animation);
         }
-
-
     }
-
-
 }
