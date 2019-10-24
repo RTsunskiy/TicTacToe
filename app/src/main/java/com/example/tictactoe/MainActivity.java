@@ -7,8 +7,10 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.BounceInterpolator;
+import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
@@ -386,7 +388,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void tweenAnimation(ImageButton button) {
         final Animation animation = new ScaleAnimation(0.5f, 1f, 0.5f, 1f);
-        animation.setDuration(1000);
+        animation.setDuration(600);
         animation.setInterpolator(new BounceInterpolator());
         if (button.equals(button00)) {
             button00.startAnimation(animation);
